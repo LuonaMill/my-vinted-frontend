@@ -1,0 +1,25 @@
+header {
+  height: 65px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+header img {
+  width: 100px;
+  height: 40px;
+}
+
+header input {
+  height: 40px;
+  width: 630px;
+  background-color: #f5f6f7;
+  border: none;
+}
+
+button {
+  height: 30px;
+  border: 1px solid #2eb1ba;
+  background-color: white;
+  color: #2eb1ba;
+}
