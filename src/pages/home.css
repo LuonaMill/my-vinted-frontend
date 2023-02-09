@@ -1,7 +1,13 @@
-main {
+:root {
+  --blue-vinted: #2eb1ba;
+  --font-vinted: "Lato", sans-serif;
+}
+
+main.main-home {
   width: 100%;
   height: 100%;
   box-sizing: border-box;
+  font-family: var(--font-vinted);
 }
 
 .hero-block {
@@ -10,7 +16,7 @@ main {
 
 .hero-block img {
   width: 100vw;
-  height: 50vh;
+  height: 440px;
   object-fit: cover;
   object-position: 70% 30%;
 }
@@ -31,15 +37,20 @@ main .white-square {
 }
 
 main .white-square button {
-  height: 20%;
-  width: 50%;
+  height: 40px;
+  width: 300px;
+  background-color: var(--blue-vinted);
+  border: none;
+  color: white;
+  border-radius: 5px;
 }
 
 .homepage-offers {
   width: 1250px;
   margin: 0 auto;
-  border: red solid 1px;
+  /* border: red solid 1px; */
   display: flex;
+  flex-direction: row-reverse;
   flex-wrap: wrap;
   /* align-items: center; */
   justify-content: space-between;
@@ -47,6 +58,7 @@ main .white-square button {
 
 .homepage-offers div.offer {
   width: 19.5%;
+  padding-bottom: 15px;
 }
 
 .avatar {
@@ -55,6 +67,7 @@ main .white-square button {
   margin-left: 30px;
   color: black;
   text-decoration: none;
+  padding-bottom: 5px;
 }
 
 .avatar img {

@@ -1,3 +1,8 @@
+:root {
+  --blue-vinted: #2eb1ba;
+  --font-vinted: "Lato", sans-serif;
+}
+
 header {
   height: 65px;
   display: flex;
@@ -10,16 +15,34 @@ header img {
   height: 40px;
 }
 
-header input {
+header .researcher {
   height: 40px;
   width: 630px;
   background-color: #f5f6f7;
   border: none;
+  font-family: var(--font-vinted);
+  border-radius: 5px;
 }
 
-button {
+header .researcher::placeholder {
+  padding-left: 10px;
+  font-size: 16px;
+  font-weight: 300;
+  color: #d0d3d4;
+}
+
+header button {
   height: 30px;
-  border: 1px solid #2eb1ba;
+  width: 110px;
+  border: 1px solid var(--blue-vinted);
   background-color: white;
-  color: #2eb1ba;
+  color: var(--blue-vinted);
+  border-radius: 5px;
+  font-size: 12px;
+  font-family: var(--font-vinted);
+}
+
+header .blue-button {
+  background-color: var(--blue-vinted);
+  color: white;
 }
