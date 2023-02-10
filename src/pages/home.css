@@ -48,17 +48,18 @@ main .white-square button {
 
 .homepage-offers {
   width: 1250px;
-  margin: 0 auto;
+  margin: 10px auto;
   /* border: red solid 1px; */
   display: flex;
-  flex-direction: row-reverse;
+  /* flex-direction: row-reverse; */
   flex-wrap: wrap;
   /* align-items: center; */
-  justify-content: space-between;
+  justify-content: flex-end;
+  gap: 10px;
 }
 
 .homepage-offers div.offer {
-  width: 19.5%;
+  width: 19%;
   padding-bottom: 15px;
 }
 

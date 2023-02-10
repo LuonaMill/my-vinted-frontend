@@ -16,6 +16,8 @@ import Cookies from "js-cookie";
 
 function App() {
   const [search, setSearch] = useState("");
+  const [sortAscPrice, setSortAscPrice] = useState("");
+  const [sortDescPrice, setSortDescPrice] = useState("price-desc");
 
   //Je dois créer un state pour mon token qui sera utilisé dans mes pages Header, Signup et Signin donc je le mets dans App.js, car c'est le plus proche ancêtre commun
   // Je vérifie si le token vinted existe dans mes cookies, sinon null
@@ -41,9 +43,22 @@ function App() {
         token={token}
         search={search}
         setSearch={setSearch}
+        sortAscPrice={sortAscPrice}
+        setSortAscPrice={setSortAscPrice}
+        sortDescPrice={sortDescPrice}
+        setSortDescPrice={setSortDescPrice}
       />
       <Routes>
-        <Route path="/" element={<Home />} search={search} />
+        <Route
+          path="/"
+          element={
+            <Home
+              search={search}
+              sortAscPrice={sortAscPrice}
+              sortDescPrice={sortDescPrice}
+            />
+          }
+        />
         <Route path="/offer/:id" element={<Offer />} />
         <Route path="/signup" element={<Signup handleToken={handleToken} />} />
         <Route path="/signin" element={<Signin handleToken={handleToken} />} />

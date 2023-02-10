@@ -7,16 +7,16 @@ import heroImage from "../images/officiel-hero-image.jpg";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-const Home = ({ search }) => {
+const Home = ({ search, sortAscPrice, sortDescPrice }) => {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
-  console.log(search);
+  console.log(search.length);
   useEffect(() => {
     const fetchData = async () => {
-      if (search.length < 3) {
+      if (!search && sortDescPrice) {
         try {
           const response = await axios.get(
-            "https://lereacteur-vinted-api.herokuapp.com/offers"
+            "https://lereacteur-vinted-api.herokuapp.com/offers?sort=price-desc"
           );
           setData(response.data);
           setIsLoading(false);
@@ -26,7 +26,7 @@ const Home = ({ search }) => {
       } else {
         try {
           const response = await axios.get(
-            `https://lereacteur-vinted-api.herokuapp.com/offers?title=${search}`
+            `https://lereacteur-vinted-api.herokuapp.com/offers?sort=${sortAscPrice}${sortDescPrice}&title=${search}`
           );
           setData(response.data);
           console.log(data.offers);
@@ -37,7 +37,7 @@ const Home = ({ search }) => {
       }
     };
     fetchData();
-  }, []);
+  }, [search]);
 
   return isLoading ? (
     <p>Loading...</p>
@@ -56,9 +56,6 @@ const Home = ({ search }) => {
             <button>Vends maintenant</button>
           </div>
         </section>
-        <h1>mon composant home</h1>
-        {/* <img src={logo} alt="" /> */}
-        <Link to={`/offer/id`}>Naviguer vers Offer</Link>
 
         <section className="homepage-offers">
           {data.offers.map((elem, index) => {
