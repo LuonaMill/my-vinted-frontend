@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 
-const OfferCard = ({ offerInfos, key }) => {
+const OfferCard = ({ offerInfos, key, offerId }) => {
   return (
-    <div key={key} className="offer">
+    <div key={offerId} className="offer">
       <Link
         to={`/offer/${offerInfos._id}`}
         style={{ textDecoration: "none", color: "black" }}

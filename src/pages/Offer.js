@@ -2,7 +2,7 @@ import "./offer.css";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
-import logo from "../images/logo.png";
+
 import axios from "axios";
 import { useState, useEffect } from "react";
 
@@ -33,7 +33,7 @@ const Offer = () => {
     <p>Loading...</p>
   ) : (
     <div>
-      <Header logo={logo} />
+      <Header />
       <main className="main-offer">
         <div className="test">
           {/* <p>{offer.product_name}</p> */}

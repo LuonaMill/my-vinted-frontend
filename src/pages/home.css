@@ -31,6 +31,7 @@ main .white-square {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  gap: 10px;
   padding: 25px;
   font-size: 30px;
   border-radius: 5px;
@@ -38,7 +39,7 @@ main .white-square {
 
 main .white-square button {
   height: 40px;
-  width: 300px;
+  width: 90%;
   background-color: var(--blue-vinted);
   border: none;
   color: white;
