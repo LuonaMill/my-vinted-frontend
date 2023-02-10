@@ -7,7 +7,7 @@ import heroImage from "../images/officiel-hero-image.jpg";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-const Home = (search) => {
+const Home = ({ search }) => {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
   console.log(search);
