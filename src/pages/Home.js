@@ -13,28 +13,28 @@ const Home = (search) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      // if (search.length < 3) {
-      try {
-        const response = await axios.get(
-          "https://lereacteur-vinted-api.herokuapp.com/offers"
-        );
-        setData(response.data);
-        setIsLoading(false);
-      } catch (error) {
-        console.log(error.message);
+      if (search.length < 3) {
+        try {
+          const response = await axios.get(
+            "https://lereacteur-vinted-api.herokuapp.com/offers"
+          );
+          setData(response.data);
+          setIsLoading(false);
+        } catch (error) {
+          console.log(error.message);
+        }
+      } else {
+        try {
+          const response = await axios.get(
+            `https://lereacteur-vinted-api.herokuapp.com/offers?title=${search}`
+          );
+          setData(response.data);
+          console.log(data.offers);
+          setIsLoading(false);
+        } catch (error) {
+          console.log(error.message);
+        }
       }
-      // } else {
-      // try {
-      //   const response = await axios.get(
-      //     `https://lereacteur-vinted-api.herokuapp.com/offers?title=${search}`
-      //   );
-      //   setData(response.data);
-      //   console.log(data.offers);
-      //   setIsLoading(false);
-      // } catch (error) {
-      //   console.log(error.message);
-      // }
-      // }
     };
     fetchData();
   }, []);
