@@ -10,7 +10,7 @@ import { useState, useEffect } from "react";
 const Home = (search) => {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
-
+  console.log(search);
   useEffect(() => {
     const fetchData = async () => {
       if (search.length < 3) {
