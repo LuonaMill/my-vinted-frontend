@@ -1,16 +1,23 @@
 import "./home.css";
-import { Link } from "react-router-dom";
 import OfferCard from "../components/OfferCard";
-
 import heroImage from "../images/officiel-hero-image.jpg";
+
 // import offers from "../offers.json";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-const Home = ({ search, sortAscPrice, sortDescPrice }) => {
+const Home = ({
+  search,
+  sortAscPrice,
+  sortDescPrice,
+  filterDisplay,
+  setFilterDisplay,
+}) => {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
+
   console.log(search.length);
+
   useEffect(() => {
     const fetchData = async () => {
       if (!search && sortDescPrice) {
@@ -20,6 +27,7 @@ const Home = ({ search, sortAscPrice, sortDescPrice }) => {
           );
           setData(response.data);
           setIsLoading(false);
+          setFilterDisplay(true);
         } catch (error) {
           console.log(error.message);
         }
@@ -31,13 +39,14 @@ const Home = ({ search, sortAscPrice, sortDescPrice }) => {
           setData(response.data);
           console.log(data.offers);
           setIsLoading(false);
+          setFilterDisplay(true);
         } catch (error) {
           console.log(error.message);
         }
       }
     };
     fetchData();
-  }, [search]);
+  }, [search, sortAscPrice, sortDescPrice]);
 
   return isLoading ? (
     <p>Loading...</p>

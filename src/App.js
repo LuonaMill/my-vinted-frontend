@@ -1,7 +1,7 @@
 import "./App.css";
 
 // import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 //Import du router
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -18,6 +18,7 @@ function App() {
   const [search, setSearch] = useState("");
   const [sortAscPrice, setSortAscPrice] = useState("");
   const [sortDescPrice, setSortDescPrice] = useState("price-desc");
+  const [filterDisplay, setFilterDisplay] = useState(false);
 
   //Je dois créer un state pour mon token qui sera utilisé dans mes pages Header, Signup et Signin donc je le mets dans App.js, car c'est le plus proche ancêtre commun
   // Je vérifie si le token vinted existe dans mes cookies, sinon null
@@ -47,6 +48,7 @@ function App() {
         setSortAscPrice={setSortAscPrice}
         sortDescPrice={sortDescPrice}
         setSortDescPrice={setSortDescPrice}
+        filterDisplay={filterDisplay}
       />
       <Routes>
         <Route
@@ -56,12 +58,32 @@ function App() {
               search={search}
               sortAscPrice={sortAscPrice}
               sortDescPrice={sortDescPrice}
+              filterDisplay={filterDisplay}
+              setFilterDisplay={setFilterDisplay}
             />
           }
         />
         <Route path="/offer/:id" element={<Offer />} />
-        <Route path="/signup" element={<Signup handleToken={handleToken} />} />
-        <Route path="/signin" element={<Signin handleToken={handleToken} />} />
+        <Route
+          path="/signup"
+          element={
+            <Signup
+              handleToken={handleToken}
+              filterDisplay={filterDisplay}
+              setFilterDisplay={setFilterDisplay}
+            />
+          }
+        />
+        <Route
+          path="/signin"
+          element={
+            <Signin
+              handleToken={handleToken}
+              filterDisplay={filterDisplay}
+              setFilterDisplay={setFilterDisplay}
+            />
+          }
+        />
       </Routes>
     </Router>
   );

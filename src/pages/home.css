@@ -54,7 +54,7 @@ main .white-square button {
   /* flex-direction: row-reverse; */
   flex-wrap: wrap;
   /* align-items: center; */
-  justify-content: flex-end;
+  /* justify-content: flex-end; */
   gap: 10px;
 }
 
@@ -76,6 +76,10 @@ main .white-square button {
   height: 25px;
   width: 25px;
   border-radius: 50%;
+}
+
+.avatar span {
+  line-height: 30px;
 }
 
 .offer-picture img {

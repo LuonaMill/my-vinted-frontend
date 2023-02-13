@@ -1,12 +1,11 @@
 import "./offer.css";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import Header from "../components/Header";
 
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-const Offer = () => {
+const Offer = (filterDisplay, setFilterDisplay) => {
   // const { id } = useParams();
   // On aurait pu écrire à la place de {id} :
   const params = useParams();
@@ -22,6 +21,7 @@ const Offer = () => {
         );
         setData(response.data);
         setIsLoading(false);
+        setFilterDisplay(false);
       } catch (error) {
         console.log(error.message);
       }
@@ -33,7 +33,6 @@ const Offer = () => {
     <p>Loading...</p>
   ) : (
     <div>
-      <Header />
       <main className="main-offer">
         <div className="test">
           {/* <p>{offer.product_name}</p> */}

@@ -1,6 +1,6 @@
 import "./header.css";
-import { Link, Navigate, useParams } from "react-router-dom";
-import logo from "/Users/laurine/LeReacteur/React/Jour8/vinted-frontend/src/images/logo.png";
+import { Link } from "react-router-dom";
+import logo from "../../images/logo.png";
 
 const Header = ({
   handleToken,
@@ -11,6 +11,7 @@ const Header = ({
   setSortAscPrice,
   sortDescPrice,
   setSortDescPrice,
+  filterDisplay,
 }) => {
   // const token = Cookies.get("token-vinted");
 
@@ -29,27 +30,31 @@ const Header = ({
           }}
           value={search}
         />
-        <div>
-          <p>Trier par</p>
-          <button
-            className={sortAscPrice ? "blue-button" : ""}
-            onClick={() => {
-              setSortAscPrice("price-asc");
-              setSortDescPrice("");
-            }}
-          >
-            Prix croissant
-          </button>
-          <button
-            className={sortDescPrice ? "blue-button" : ""}
-            onClick={() => {
-              setSortDescPrice("price-desc");
-              setSortAscPrice("");
-            }}
-          >
-            Prix décroissant
-          </button>
-          {/* <input
+        {/* Créer une condition d'affichage de la div sort-by-price 
+        Idée : seulement sur la page Home 
+        */}
+        {filterDisplay && (
+          <div>
+            <p>Trier par</p>
+            <button
+              className={sortAscPrice ? "blue-button" : ""}
+              onClick={() => {
+                setSortAscPrice("price-asc");
+                setSortDescPrice("");
+              }}
+            >
+              Prix croissant
+            </button>
+            <button
+              className={sortDescPrice ? "blue-button" : ""}
+              onClick={() => {
+                setSortDescPrice("price-desc");
+                setSortAscPrice("");
+              }}
+            >
+              Prix décroissant
+            </button>
+            {/* <input
             type="checkbox"
             name="sort-price"
             value={sortAscPrice}
@@ -57,7 +62,8 @@ const Header = ({
               setSortAscPrice(!sortAscPrice);
             }}
           /> */}
-        </div>
+          </div>
+        )}
       </div>
       {!token ? (
         <>

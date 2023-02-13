@@ -11,13 +11,16 @@ const OfferCard = ({ offerInfos, key, offerId }) => {
           {offerInfos.owner.account.avatar && (
             <img
               src={offerInfos.owner.account.avatar.secure_url}
-              alt="image-avatar"
+              alt="owner avatar"
             />
           )}
           <span>{offerInfos.owner.account.username}</span>
         </div>
         <div className="offer-picture">
-          <img src={offerInfos.product_pictures[0].secure_url} alt="" />
+          <img
+            src={offerInfos.product_pictures[0].secure_url}
+            alt="object to buy"
+          />
         </div>
         <p>{offerInfos.product_price}€</p>
 
