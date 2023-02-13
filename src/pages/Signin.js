@@ -8,17 +8,15 @@ const Signin = ({ handleToken }) => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post(
-        "https://lereacteur-vinted-api.herokuapp.com/user/login",
-        {
-          email: email,
-          password: password,
-        }
-      );
+      const response = await axios.post("http://localhost:4002/user/login", {
+        email: email,
+        password: password,
+      });
       console.log(response.data);
       if (response.data.token) {
         // Cookies.set("token-vinted", response.data.token, {expires:14})
@@ -27,9 +25,13 @@ const Signin = ({ handleToken }) => {
       }
     } catch (error) {
       console.log(error.response.data);
+      if (error.response.data.message === "User not found") {
+        setErrorMessage(
+          "Cet email est inconnu, merci de renseigner un autre email"
+        );
+      }
     }
   };
-
   return (
     <div className="sign-in">
       <section className="connection">

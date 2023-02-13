@@ -1,5 +1,5 @@
 import "./header.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import logo from "../../images/logo.png";
 
 const Header = ({
@@ -14,6 +14,9 @@ const Header = ({
   filterDisplay,
 }) => {
   // const token = Cookies.get("token-vinted");
+
+  const navigate = useNavigate();
+  const location = useLocation();
 
   return (
     <header>
@@ -33,8 +36,8 @@ const Header = ({
         {/* Créer une condition d'affichage de la div sort-by-price 
         Idée : seulement sur la page Home 
         */}
-        {filterDisplay && (
-          <div>
+        {location.pathname === "/" && (
+          <div className="sort-by-price">
             <p>Trier par</p>
             <button
               className={sortAscPrice ? "blue-button" : ""}
@@ -79,12 +82,24 @@ const Header = ({
           onClick={() => {
             handleToken(null);
           }}
+          className="red-button"
         >
           Se déconnecter
         </button>
       )}
 
-      <button className="blue-button">Vends tes articles</button>
+      <button
+        className="blue-button"
+        onClick={() => {
+          if (token) {
+            navigate("/publish");
+          } else {
+            navigate("/signin");
+          }
+        }}
+      >
+        Vends tes articles
+      </button>
     </header>
   );
 };

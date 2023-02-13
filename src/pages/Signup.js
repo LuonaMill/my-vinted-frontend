@@ -12,7 +12,6 @@ const Signup = ({ handleToken }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [newsletter, setNewsletter] = useState(false);
-
   //On crée un state pour pouvoir stocker un éventuel message d'erreur (pb de compte déjà créé par ex)
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -27,7 +26,7 @@ const Signup = ({ handleToken }) => {
     try {
       // 3e etape : on fait une requête asynchrone qu'on stocke dans une variable.
       const response = await axios.post(
-        "https://lereacteur-vinted-api.herokuapp.com/user/signup",
+        "http://localhost:4002/user/signup",
         //4e etape : Cette requête doit recevoir un body qui sera le contenu de mes states
         {
           email: email,

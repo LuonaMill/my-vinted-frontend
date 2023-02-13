@@ -34,30 +34,56 @@ const Offer = (filterDisplay, setFilterDisplay) => {
   ) : (
     <div>
       <main className="main-offer">
-        <div className="test">
-          {/* <p>{offer.product_name}</p> */}
-          <p>{id}</p>
-          <p>mon composant offer</p>
-          <Link to="/">Naviguer vers Home</Link>
+        <div className="left">
+          <img src={data.product_image.secure_url} alt="" />
         </div>
-        <section>
-          <div className="left">
-            <img src={data.product_image.secure_url} alt="" />
+        <div className="right">
+          <div className="right-top">
+            <p className="price">{data.product_price} €</p>
+            <div className="details">
+              {data.product_details.map((detail, index) => {
+                const key = Object.keys(detail)[0];
+                return (
+                  <ul key={index} className="each-detail">
+                    <li>
+                      <span className="type">{key.toUpperCase()}</span>
+                      <span className="infos">
+                        {" "}
+                        {detail[key].toUpperCase()}
+                      </span>
+                    </li>
+                  </ul>
+                );
+              })}
+            </div>
           </div>
-          <div className="right">
-            <p>{data.product_price}€</p>
-            {data.product_details.map((detail, index) => {
-              const key = Object.keys(detail)[0];
-              return (
-                <div key={index}>
-                  <p>
-                    <span>{key}</span> : <span> {detail[key]}</span>
-                  </p>
-                </div>
-              );
-            })}
+          <div>
+            <hr />
           </div>
-        </section>
+
+          <div className="right-bottom">
+            <p style={{ fontWeight: "700", fontSize: "18px" }}>
+              {data.product_name}
+            </p>
+            <p style={{ fontWeight: "300", fontSize: "18px" }}>
+              {data.product_description}
+            </p>
+
+            {data.owner.account.avatar ? (
+              <p className="owner">
+                <img src={data.owner.account.avatar.secure_url} alt="avatar" />
+                <span>{data.owner.account.username}</span>
+              </p>
+            ) : (
+              <p>
+                <span>{data.owner.account.username}</span>
+              </p>
+            )}
+          </div>
+          <div className="buy-button">
+            <button>Acheter</button>
+          </div>
+        </div>
       </main>
     </div>
   );

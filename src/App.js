@@ -12,6 +12,8 @@ import Home from "./pages/Home";
 import Offer from "./pages/Offer";
 import Signup from "./pages/Signup";
 import Signin from "./pages/Signin";
+import Publish from "./pages/Publish";
+
 import Cookies from "js-cookie";
 
 function App() {
@@ -30,10 +32,8 @@ function App() {
       setToken(token);
       Cookies.set("token-vinted", token, { expires: 14 });
     } else {
-      {
-        setToken(null);
-        Cookies.remove("token-vinted");
-      }
+      setToken(null);
+      Cookies.remove("token-vinted");
     }
   };
 
@@ -84,6 +84,7 @@ function App() {
             />
           }
         />
+        <Route path="/publish" element={<Publish token={token} />} />
       </Routes>
     </Router>
   );

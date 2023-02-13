@@ -47,7 +47,18 @@ header .blue-button {
   color: white;
 }
 
+header .red-button {
+  background-color: #c2185b;
+  border: none;
+  color: white;
+}
+
 header button:hover,
 header img:hover {
   cursor: pointer;
+}
+
+.sort-by-price {
+  display: flex;
+  align-items: center;
 }
