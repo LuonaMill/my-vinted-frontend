@@ -60,6 +60,7 @@ const Signin = ({ handleToken }) => {
             onChange={(event) => setPassword(event.target.value)}
           />
         </div>
+        {errorMessage && <p>{errorMessage}</p>}
         <div>
           <button type="submit" className="connection-button">
             Se connecter

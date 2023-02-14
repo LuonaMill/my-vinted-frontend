@@ -1,6 +1,6 @@
 import "../assets/css/offer.scss";
 import { useParams } from "react-router-dom";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
 import { useState, useEffect } from "react";

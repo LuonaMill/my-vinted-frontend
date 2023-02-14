@@ -6,14 +6,14 @@ import CheckoutForm from "../components/CheckoutForm";
 
 const Payment = () => {
   //  Je me connecte au compte stripe du Reacteur en front en fournissant sa clef publique
-  // const stripePromise = loadStripe(
-  //   "pk_test_51HCObyDVswqktOkX6VVcoA7V2sjOJCUB4FBt3EOiAdSz5vWudpWxwcSY8z2feWXBq6lwMgAb5IVZZ1p84ntLq03H00LDVc2RwP"
-  // );
+  const stripePromise = loadStripe(
+    "pk_test_51HCObyDVswqktOkX6VVcoA7V2sjOJCUB4FBt3EOiAdSz5vWudpWxwcSY8z2feWXBq6lwMgAb5IVZZ1p84ntLq03H00LDVc2RwP"
+  );
 
   //  Je me connecte à mon compte stripe
-  const stripePromise = loadStripe(
-    "pk_test_51MbOMcBYTQKPCQuG2QTDXNquLlbZlSf1KtFoCNpdANNAjL5RP4kWQPPeb06hhz1PEfgkJ2y1AYdnbQgudGhV02XV00tlgngW9z"
-  );
+  // const stripePromise = loadStripe(
+  //   "pk_test_51MbOMcBYTQKPCQuG2QTDXNquLlbZlSf1KtFoCNpdANNAjL5RP4kWQPPeb06hhz1PEfgkJ2y1AYdnbQgudGhV02XV00tlgngW9z"
+  // );
   const location = useLocation();
   const { title, price, id, ownerid } = location.state;
   const protectionFees = 40 / 100;

@@ -49,6 +49,7 @@ const Publish = ({ token }) => {
       navigate(`/offer/${response.data._id}`);
     } catch (error) {
       console.log(error.response.data.message);
+      setErrorMessage(error.response.data.message);
     }
   };
 
@@ -80,7 +81,7 @@ const Publish = ({ token }) => {
                   setPicture(event.target.files[0]);
                 }}
               />
-              {picture && <img src={URL.createObjectURL(picture)} />}
+              {picture && <img src={URL.createObjectURL(picture)} alt="" />}
             </div>
           </div>
         </div>
@@ -191,6 +192,9 @@ const Publish = ({ token }) => {
             />
             <span>Je suis intéressé(e) par les échanges</span>
           </div>
+          {errorMessage && (
+            <p>Nous rencontrons l'erreur suivante : {errorMessage}</p>
+          )}
         </div>
         <button type="submit">Ajouter</button>
       </form>
