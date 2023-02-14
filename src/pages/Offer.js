@@ -1,4 +1,4 @@
-import "./offer.css";
+import "../assets/css/offer.scss";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
@@ -47,10 +47,7 @@ const Offer = (filterDisplay, setFilterDisplay) => {
                   <ul key={index} className="each-detail">
                     <li>
                       <span className="type">{key.toUpperCase()}</span>
-                      <span className="infos">
-                        {" "}
-                        {detail[key].toUpperCase()}
-                      </span>
+                      <span className="infos">{detail[key].toUpperCase()}</span>
                     </li>
                   </ul>
                 );

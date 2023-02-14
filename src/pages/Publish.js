@@ -1,6 +1,9 @@
-import "./publish.css";
+import "../assets/css/publish.scss";
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+//Pour publier sur mon propre backend, remplacer par : http://localhost:4002/offer/publish
 
 const Publish = ({ token }) => {
   const [picture, setPicture] = useState();
@@ -14,11 +17,12 @@ const Publish = ({ token }) => {
   const [price, setPrice] = useState(0);
   const [exchangeInterest, setExchangeInterest] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setErrorMessage("");
-    console.log(token);
+    // console.log(token);
 
     try {
       const formData = new FormData();
@@ -33,7 +37,7 @@ const Publish = ({ token }) => {
       formData.append("price", price);
       formData.append("exchangeInterest", exchangeInterest);
       const response = await axios.post(
-        "http://localhost:4002/offer/publish",
+        "https://lereacteur-vinted-api.herokuapp.com/offer/publish",
         formData,
         {
           headers: {
@@ -42,7 +46,7 @@ const Publish = ({ token }) => {
           },
         }
       );
-      console.log(response.data);
+      navigate(`/offer/${response.data._id}`);
     } catch (error) {
       console.log(error.response.data.message);
     }
@@ -50,8 +54,8 @@ const Publish = ({ token }) => {
 
   return (
     <div className="publish-offer">
-      <h2>Vends ton article</h2>
       <form onSubmit={handleSubmit}>
+        <h2>Vends ton article</h2>
         {/* <div className="picture-upload">
           <h2>Drag and drop test</h2>
           <MyDropzone />
@@ -59,16 +63,18 @@ const Publish = ({ token }) => {
         <div className="picture-upload">
           <div>
             <label htmlFor="picture-upload">Ajoute une photo</label>
-            <input
-              type="file"
-              placeholder="Ajoute une photo"
-              name="picture-upload"
-              id="picture-upload"
-              required
-              onChange={(event) => {
-                setPicture(event.target.files[0]);
-              }}
-            />
+            <div>
+              <input
+                type="file"
+                placeholder="Ajoute une photo"
+                name="picture-upload"
+                id="picture-upload"
+                required
+                onChange={(event) => {
+                  setPicture(event.target.files[0]);
+                }}
+              />
+            </div>
           </div>
         </div>
 

@@ -1,4 +1,4 @@
-import "./header.css";
+import "../../assets/css/header.scss";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import logo from "../../images/logo.png";
 
@@ -11,7 +11,10 @@ const Header = ({
   setSortAscPrice,
   sortDescPrice,
   setSortDescPrice,
-  filterDisplay,
+  priceMin,
+  priceMax,
+  setPriceMin,
+  setPriceMax,
 }) => {
   // const token = Cookies.get("token-vinted");
 
@@ -33,6 +36,7 @@ const Header = ({
           }}
           value={search}
         />
+
         {/* Créer une condition d'affichage de la div sort-by-price 
         Idée : seulement sur la page Home 
         */}
@@ -57,14 +61,22 @@ const Header = ({
             >
               Prix décroissant
             </button>
-            {/* <input
-            type="checkbox"
-            name="sort-price"
-            value={sortAscPrice}
-            onChange={(event) => {
-              setSortAscPrice(!sortAscPrice);
-            }}
-          /> */}
+            <div className="price-minmax">
+              <input
+                type="text"
+                placeholder="Prix min"
+                onChange={(event) => {
+                  setPriceMin(event.target.value);
+                }}
+              />
+              <input
+                type="text"
+                placeholder="Prix max"
+                onChange={(event) => {
+                  setPriceMax(event.target.value);
+                }}
+              />
+            </div>
           </div>
         )}
       </div>

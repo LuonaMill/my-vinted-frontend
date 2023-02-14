@@ -1,4 +1,4 @@
-import "./home.css";
+import "../assets/css/home.scss";
 import OfferCard from "../components/OfferCard";
 import heroImage from "../images/officiel-hero-image.jpg";
 
@@ -10,8 +10,9 @@ const Home = ({
   search,
   sortAscPrice,
   sortDescPrice,
-  filterDisplay,
   setFilterDisplay,
+  priceMin,
+  priceMax,
 }) => {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
@@ -20,33 +21,19 @@ const Home = ({
 
   useEffect(() => {
     const fetchData = async () => {
-      if (!search && sortDescPrice) {
-        try {
-          const response = await axios.get(
-            "https://lereacteur-vinted-api.herokuapp.com/offers?sort=price-desc"
-          );
-          setData(response.data);
-          setIsLoading(false);
-          setFilterDisplay(true);
-        } catch (error) {
-          console.log(error.message);
-        }
-      } else {
-        try {
-          const response = await axios.get(
-            `https://lereacteur-vinted-api.herokuapp.com/offers?sort=${sortAscPrice}${sortDescPrice}&title=${search}`
-          );
-          setData(response.data);
-          console.log(data.offers);
-          setIsLoading(false);
-          setFilterDisplay(true);
-        } catch (error) {
-          console.log(error.message);
-        }
+      try {
+        const response = await axios.get(
+          `https://lereacteur-vinted-api.herokuapp.com/offers?sort=${sortAscPrice}${sortDescPrice}&title=${search}&priceMin=${priceMin}&priceMax=${priceMax}`
+        );
+        setData(response.data);
+        setIsLoading(false);
+        setFilterDisplay(true);
+      } catch (error) {
+        console.log(error.message);
       }
     };
     fetchData();
-  }, [search, sortAscPrice, sortDescPrice]);
+  }, [search, sortAscPrice, sortDescPrice, priceMin, priceMax]);
 
   return isLoading ? (
     <p>Loading...</p>

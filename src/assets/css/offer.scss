@@ -1,0 +1,93 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Montserrat:wght@400;500;700&family=Pacifico&family=Roboto:wght@400;700&display=swap"); */
+
+:root {
+  --blue-vinted: #2eb1ba;
+  --font-vinted: "Lato", sans-serif;
+}
+
+.main-offer {
+  height: 90vh;
+  background-color: rgb(234, 237, 238);
+  font-family: "Lato", sans-serif;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  .left img {
+    height: 600px;
+    width: 850px;
+    object-fit: contain;
+    object-position: top;
+  }
+  .right {
+    height: 600px;
+    width: 370px;
+    background-color: #fff;
+    padding: 0 35px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .right-top,
+    .right-bottom {
+      height: 40%;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      gap: 10px;
+    }
+    .price {
+      font-size: 24px;
+    }
+  }
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  font-weight: 400;
+  font-size: 14px;
+  .each-detail {
+    display: block;
+    padding: 2px 0;
+    li {
+      display: flex;
+      justify-content: space-between;
+      span {
+        width: 50%;
+        .type {
+          color: #999999;
+        }
+        .infos {
+          color: #666666;
+        }
+      }
+    }
+  }
+  .owner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+}
+
+.owner img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+.buy-button {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  button {
+    background-color: var(--blue-vinted);
+    border: none;
+    height: 40px;
+    width: 80%;
+    color: white;
+    font-size: 18px;
+    border-radius: 5px;
+  }
+}
