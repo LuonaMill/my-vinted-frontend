@@ -24,14 +24,11 @@ const CheckoutForm = ({ name, title, amount }) => {
       });
       // Je récupère le token envoyé par Stripe avec
       const stripeToken = stripeResponse.token.id;
-      const response = await axios.post(
-        "https://lereacteur-vinted-api.herokuapp.com/payment",
-        {
-          token: stripeToken,
-          title: title,
-          amount: amount,
-        }
-      );
+      const response = await axios.post("http://localhost:4000/payment", {
+        token: stripeToken,
+        title: title,
+        amount: amount,
+      });
       console.log(response.data);
       if (response.data.status === "succeeded") {
         setCompleted(true);
