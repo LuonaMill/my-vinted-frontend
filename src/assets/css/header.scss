@@ -4,18 +4,48 @@
 }
 
 header {
-  height: 80px;
+  max-height: 90px;
   display: flex;
   justify-content: space-around;
   align-items: center;
+  img {
+    width: 100px;
+    height: 40px;
+  }
+  button {
+    height: 30px;
+    width: 110px;
+    border: 1px solid var(--blue-vinted);
+    background-color: white;
+    color: var(--blue-vinted);
+    border-radius: 5px;
+    font-size: 12px;
+    font-family: var(--font-vinted);
+  }
 }
 
-header img {
-  width: 100px;
-  height: 40px;
+.filters {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 10px;
+  padding: 5px;
+  font-family: var(--font-vinted);
+  .sort-by-price {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    .price-minmax input {
+      width: 50px;
+      height: 30px;
+      border-radius: 5px;
+      background-color: #f5f6f7;
+      border: none;
+    }
+  }
 }
 
-header .researcher {
+.researcher {
   height: 40px;
   width: 630px;
   background-color: #f5f6f7;
@@ -24,22 +54,11 @@ header .researcher {
   border-radius: 5px;
 }
 
-header .researcher::placeholder {
+::placeholder {
   padding-left: 10px;
   font-size: 16px;
   font-weight: 300;
   color: #d0d3d4;
-}
-
-header button {
-  height: 30px;
-  width: 110px;
-  border: 1px solid var(--blue-vinted);
-  background-color: white;
-  color: var(--blue-vinted);
-  border-radius: 5px;
-  font-size: 12px;
-  font-family: var(--font-vinted);
 }
 
 header .blue-button {

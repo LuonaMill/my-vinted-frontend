@@ -2,7 +2,7 @@ import "../assets/css/publish.scss";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+// import CustomInput from "../components/WIPCustomInput";
 //Pour publier sur mon propre backend, remplacer par : http://localhost:4002/offer/publish
 
 const Publish = ({ token }) => {
@@ -62,9 +62,15 @@ const Publish = ({ token }) => {
         </div> */}
         <div className="picture-upload">
           <div>
-            <label htmlFor="picture-upload">Ajoute une photo</label>
+            <label
+              htmlFor="picture-upload"
+              style={{ backgroundColor: "yellow" }}
+            >
+              Ajoute une photo
+            </label>
             <div>
               <input
+                style={{ display: "none" }}
                 type="file"
                 placeholder="Ajoute une photo"
                 name="picture-upload"
@@ -74,6 +80,7 @@ const Publish = ({ token }) => {
                   setPicture(event.target.files[0]);
                 }}
               />
+              {picture && <img src={URL.createObjectURL(picture)} />}
             </div>
           </div>
         </div>

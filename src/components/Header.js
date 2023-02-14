@@ -1,6 +1,6 @@
-import "../../assets/css/header.scss";
+import "../assets/css/header.scss";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import logo from "../../images/logo.png";
+import logo from "../images/logo.png";
 
 const Header = ({
   handleToken,
@@ -26,7 +26,7 @@ const Header = ({
       <Link to="/">
         <img src={logo} alt="logo vinted foncé et en toutes lettres" />
       </Link>
-      <div>
+      <div className="filters">
         <input
           type="text"
           placeholder="🔍   Recherchez des articles ici"
@@ -37,45 +37,47 @@ const Header = ({
           value={search}
         />
 
-        {/* Créer une condition d'affichage de la div sort-by-price 
-        Idée : seulement sur la page Home 
-        */}
         {location.pathname === "/" && (
           <div className="sort-by-price">
-            <p>Trier par</p>
-            <button
-              className={sortAscPrice ? "blue-button" : ""}
-              onClick={() => {
-                setSortAscPrice("price-asc");
-                setSortDescPrice("");
-              }}
-            >
-              Prix croissant
-            </button>
-            <button
-              className={sortDescPrice ? "blue-button" : ""}
-              onClick={() => {
-                setSortDescPrice("price-desc");
-                setSortAscPrice("");
-              }}
-            >
-              Prix décroissant
-            </button>
+            <div className="up-down">
+              <span>Trier par </span>
+              <button
+                className={sortAscPrice ? "blue-button" : ""}
+                onClick={() => {
+                  setSortAscPrice("price-asc");
+                  setSortDescPrice("");
+                }}
+              >
+                Prix croissant
+              </button>
+              <button
+                className={sortDescPrice ? "blue-button" : ""}
+                onClick={() => {
+                  setSortDescPrice("price-desc");
+                  setSortAscPrice("");
+                }}
+              >
+                Prix décroissant
+              </button>
+            </div>
             <div className="price-minmax">
+              <span>Afficher les articles entre</span>
               <input
                 type="text"
-                placeholder="Prix min"
+                placeholder="min"
                 onChange={(event) => {
                   setPriceMin(event.target.value);
                 }}
               />
+              <span>et </span>
               <input
                 type="text"
-                placeholder="Prix max"
+                placeholder="max"
                 onChange={(event) => {
                   setPriceMax(event.target.value);
                 }}
               />
+              <span>€</span>
             </div>
           </div>
         )}
@@ -100,6 +102,7 @@ const Header = ({
         </button>
       )}
 
+      {/* VOICI UNE FACON DE FAIRE UN BOUTON LINKé AVEC ONCLICK  */}
       <button
         className="blue-button"
         onClick={() => {
@@ -112,6 +115,11 @@ const Header = ({
       >
         Vends tes articles
       </button>
+
+      {/* VOICI UNE AUTRE FACON DE FAIRE GRACE A UNE TERNAIRE dans LINK*/}
+      {/* <Link to={token ? navigate("/publish") : navigate("/signin")}>
+        <button className="blue-button"> Vends tes articles</button>
+      </Link> */}
     </header>
   );
 };

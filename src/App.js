@@ -14,6 +14,7 @@ import Offer from "./pages/Offer";
 import Signup from "./pages/Signup";
 import Signin from "./pages/Signin";
 import Publish from "./pages/Publish";
+import Payment from "./pages/Payment";
 
 import Cookies from "js-cookie";
 
@@ -65,16 +66,18 @@ function App() {
               sortDescPrice={sortDescPrice}
               priceMax={priceMax}
               priceMin={priceMin}
+              token={token}
             />
           }
         />
-        <Route path="/offer/:id" element={<Offer />} />
+        <Route path="/offer/:id" element={<Offer token={token} />} />
         <Route
           path="/signup"
           element={<Signup handleToken={handleToken} f />}
         />
         <Route path="/signin" element={<Signin handleToken={handleToken} />} />
         <Route path="/publish" element={<Publish token={token} />} />
+        <Route path="/payment" element={<Payment token={token} />} />
       </Routes>
     </Router>
   );

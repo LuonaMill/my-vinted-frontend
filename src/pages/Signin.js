@@ -1,12 +1,14 @@
 import "../assets/css/signin.scss";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
-// import Cookies from "js-cookie";
 // Test OK : Pour me connecter à mon back en local, utiliser la requête vers http://localhost:4002/user/login
 
 const Signin = ({ handleToken }) => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { id } = location.state;
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -25,7 +27,11 @@ const Signin = ({ handleToken }) => {
       if (response.data.token) {
         // Cookies.set("token-vinted", response.data.token, {expires:14})
         handleToken(response.data.token);
-        navigate("/");
+        if (id) {
+          navigate(`/offer/${id}`);
+        } else {
+          navigate("/");
+        }
       }
     } catch (error) {
       console.log(error.response.data);

@@ -1,11 +1,13 @@
 import "../assets/css/offer.scss";
 import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-const Offer = (filterDisplay, setFilterDisplay) => {
+const Offer = ({ token }) => {
+  const navigate = useNavigate();
+  // const location = useLocation();
   // const { id } = useParams();
   // On aurait pu écrire à la place de {id} :
   const params = useParams();
@@ -21,7 +23,6 @@ const Offer = (filterDisplay, setFilterDisplay) => {
         );
         setData(response.data);
         setIsLoading(false);
-        setFilterDisplay(false);
       } catch (error) {
         console.log(error.message);
       }
@@ -78,7 +79,29 @@ const Offer = (filterDisplay, setFilterDisplay) => {
             )}
           </div>
           <div className="buy-button">
-            <button>Acheter</button>
+            <button
+              onClick={() => {
+                if (!token) {
+                  navigate("/signin", {
+                    state: {
+                      id: id,
+                    },
+                  });
+                } else {
+                  // navigate("/payment");
+                  navigate("/payment", {
+                    state: {
+                      title: data.product_name,
+                      price: data.product_price,
+
+                      ownerid: data.owner._id,
+                    },
+                  });
+                }
+              }}
+            >
+              Acheter
+            </button>
           </div>
         </div>
       </main>

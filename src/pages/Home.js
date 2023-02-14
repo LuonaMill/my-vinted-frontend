@@ -5,15 +5,17 @@ import heroImage from "../images/officiel-hero-image.jpg";
 // import offers from "../offers.json";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Home = ({
   search,
   sortAscPrice,
   sortDescPrice,
-  setFilterDisplay,
   priceMin,
   priceMax,
+  token,
 }) => {
+  const navigate = useNavigate();
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -27,7 +29,6 @@ const Home = ({
         );
         setData(response.data);
         setIsLoading(false);
-        setFilterDisplay(true);
       } catch (error) {
         console.log(error.message);
       }
@@ -49,7 +50,17 @@ const Home = ({
             <h2>
               Prêts à faire du tri <br /> dans vos placards ?
             </h2>
-            <button>Vends maintenant</button>
+            <button
+              onClick={() => {
+                if (token) {
+                  navigate("/publish");
+                } else {
+                  navigate("/signin");
+                }
+              }}
+            >
+              Vends maintenant
+            </button>
           </div>
         </section>
 
