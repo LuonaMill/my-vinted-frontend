@@ -1,25 +1,27 @@
 $mainBackgroundColor: rgb(234, 237, 238);
 $vintedBlueColor: #2eb1ba;
 
+//TODO optimiser le SCSS en supprimant les redondances
+
 .publish-offer {
-  height: 100vh;
   font-family: "Maison Neue", sans-serif;
   padding-top: 20px;
+  padding-bottom: 20px;
   background-color: $mainBackgroundColor;
-}
-
-form {
-  width: 1280px;
-  margin: 40px auto 0 auto;
-  background-color: #fff;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  h2 {
-    color: red;
-    font-size: 24px;
-    background-color: $mainBackgroundColor;
-    padding-bottom: 20px;
+  box-sizing: border-box;
+  form {
+    width: 1280px;
+    margin: 40px auto 0 auto;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    h2 {
+      color: red;
+      font-size: 24px;
+      background-color: $mainBackgroundColor;
+      padding-bottom: 20px;
+    }
   }
 }
 
@@ -40,6 +42,13 @@ form {
 .article-introduction {
   display: flex;
   flex-direction: column;
+  .article-category {
+    display: flex;
+    justify-content: space-between;
+    select {
+      width: 50%;
+    }
+  }
   .article-title {
     display: flex;
     justify-content: space-between;

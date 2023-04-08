@@ -6,7 +6,7 @@ $vintedFontFamily: "Maison Neue", sans-serif;
   background-color: $mainBackgroundColor;
   font-family: $vintedFontFamily;
   height: 100vh;
-  padding-top: 30px;
+  padding-top: 35px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -23,11 +23,10 @@ $vintedFontFamily: "Maison Neue", sans-serif;
 
     .part {
       background-color: #fff;
-      height: 50%;
       display: flex;
       flex-direction: column;
       justify-content: space-evenly;
-      padding: 15px;
+      padding: 25px;
 
       h3 {
         font-size: 20px;
@@ -42,6 +41,16 @@ $vintedFontFamily: "Maison Neue", sans-serif;
   }
 }
 
+div.top {
+  height: 40%;
+  p {
+    color: #666666;
+  }
+}
+div.bottom {
+  height: 60%;
+}
+
 .total {
   font-family: "Lato", sans-serif;
   font-size: 18px;
@@ -52,4 +61,13 @@ $vintedFontFamily: "Maison Neue", sans-serif;
 
 form {
   width: 35vw;
+}
+
+button {
+  height: 40px;
+  border-radius: 5px;
+  border: none;
+  background-color: #00c06d;
+  color: white;
+  font-size: 16px;
 }

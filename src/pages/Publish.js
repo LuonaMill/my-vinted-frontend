@@ -1,12 +1,14 @@
 import "../assets/css/publish.scss";
-import { useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 // import CustomInput from "../components/WIPCustomInput";
 //Pour publier sur mon propre backend, remplacer par : http://localhost:4002/offer/publish
 
 const Publish = ({ token }) => {
-  const [picture, setPicture] = useState();
+  const [picture, setPicture] = useState({});
+  const [preview, setPreview] = useState("");
+  const [category, setCategory] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [brand, setBrand] = useState("");
@@ -27,6 +29,7 @@ const Publish = ({ token }) => {
     try {
       const formData = new FormData();
       formData.append("picture", picture);
+      formData.append("category", category);
       formData.append("title", title);
       formData.append("description", description);
       formData.append("brand", brand);
@@ -37,7 +40,7 @@ const Publish = ({ token }) => {
       formData.append("price", price);
       formData.append("exchangeInterest", exchangeInterest);
       const response = await axios.post(
-        "https://lereacteur-vinted-api.herokuapp.com/offer/publish",
+        "https://site--backend-vinted--wbbmf4gr4bwy.code.run/offer/publish",
         formData,
         {
           headers: {
@@ -46,7 +49,9 @@ const Publish = ({ token }) => {
           },
         }
       );
-      navigate(`/offer/${response.data._id}`);
+      if (response.data._id) {
+        navigate(`/offer/${response.data._id}`);
+      }
     } catch (error) {
       console.log(error.response.data.message);
       setErrorMessage(error.response.data.message);
@@ -62,31 +67,65 @@ const Publish = ({ token }) => {
           <MyDropzone />
         </div> */}
         <div className="picture-upload">
-          <div>
-            <label
-              htmlFor="picture-upload"
-              style={{ backgroundColor: "yellow" }}
-            >
-              Ajoute une photo
-            </label>
+          {preview ? (
+            <img
+              src={preview}
+              alt="prévisualisation de l'article"
+              style={{ height: "200px", width: "200px", objectFit: "cover" }}
+            />
+          ) : (
             <div>
-              <input
-                style={{ display: "none" }}
-                type="file"
-                placeholder="Ajoute une photo"
-                name="picture-upload"
-                id="picture-upload"
-                required
-                onChange={(event) => {
-                  setPicture(event.target.files[0]);
-                }}
-              />
-              {picture && <img src={URL.createObjectURL(picture)} alt="" />}
+              <label
+                htmlFor="picture-upload"
+                style={{ backgroundColor: "yellow" }}
+              >
+                Ajoute une photo
+              </label>
+              <div>
+                <input
+                  style={{ display: "none" }}
+                  type="file"
+                  placeholder="Ajoute une photo"
+                  name="picture-upload"
+                  id="picture-upload"
+                  required
+                  onChange={(event) => {
+                    console.log(event.target.files[0]);
+                    setPicture(event.target.files[0]);
+                    setPreview(URL.createObjectURL(event.target.files[0]));
+                  }}
+                />
+              </div>
             </div>
-          </div>
+          )}
         </div>
 
         <div className="article-introduction">
+          <div className="article-category">
+            <label htmlFor="article-category">Catégorie d'article</label>
+            <select
+              name="article-category"
+              id="article-category"
+              onChange={(event) => {
+                setCategory(event.target.value);
+              }}
+            >
+              <option value="">--Sélectionner la catégorie--</option>
+              <option value="top">T-shirt, pull, veste, top</option>
+              <option value="bottom">Pantalon, jupe, short</option>
+              <option value="body">Robe, combis, ensembles</option>
+              <option value="shoes">Souliers</option>
+              <option value="other">Autre</option>
+            </select>
+            {/* <input
+              type="text"
+              placeholder="ex : Chemise Sézane verte"
+              id="article-title"
+              onChange={(event) => {
+                setTitle(event.target.value);
+              }}
+            /> */}
+          </div>
           <div className="article-title">
             <label htmlFor="article-title">Titre</label>
             <input
@@ -105,7 +144,7 @@ const Publish = ({ token }) => {
               id="article-description"
               cols="30"
               rows="10"
-              placeholder="Ex:Porté quelques fois"
+              placeholder="ex : Porté quelques fois"
               onChange={(event) => {
                 setDescription(event.target.value);
               }}

@@ -1,9 +1,10 @@
 import "../assets/css/offer.scss";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-
 import axios from "axios";
-import { useState, useEffect } from "react";
+
+//TODO enlever style inline
 
 const Offer = ({ token }) => {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ const Offer = ({ token }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://lereacteur-vinted-api.herokuapp.com/offer/${id}`
+          `https://site--backend-vinted--wbbmf4gr4bwy.code.run/offer/${id}`
         );
         setData(response.data);
         setIsLoading(false);
@@ -88,7 +89,6 @@ const Offer = ({ token }) => {
                     },
                   });
                 } else {
-                  // navigate("/payment");
                   navigate("/payment", {
                     state: {
                       title: data.product_name,

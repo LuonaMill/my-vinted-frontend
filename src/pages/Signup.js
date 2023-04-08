@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 
-const Signup = ({ handleToken }) => {
+const Signup = ({ handleTokenAndId }) => {
   const navigate = useNavigate();
 
   // On va créer un state par input puis on va demander à nos input de stocker à chaque changement avec onChange
@@ -41,7 +41,7 @@ const Signup = ({ handleToken }) => {
       //5e etape : je stocke mon token autogénéré par mon serveur dans un cookie, avec une durée d'expiration fixée à 14 jours, à condition que ce token existe
       if (response.data.token) {
         // Cookies.set("token", response.data.token, { expires: 14 });
-        handleToken(response.data.token);
+        handleTokenAndId(response.data.token);
         // une fois mon token stocké, je veux naviguer vers la page Home
         navigate("/");
       }

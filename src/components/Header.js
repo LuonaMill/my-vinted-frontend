@@ -3,7 +3,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import logo from "../images/logo.png";
 
 const Header = ({
-  handleToken,
+  handleTokenAndId,
   token,
   search,
   setSearch,
@@ -94,7 +94,7 @@ const Header = ({
       ) : (
         <button
           onClick={() => {
-            handleToken(null);
+            handleTokenAndId(null);
           }}
           className="red-button"
         >

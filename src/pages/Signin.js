@@ -4,10 +4,11 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 // Test OK : Pour me connecter à mon back en local, utiliser la requête vers http://localhost:4002/user/login
 
-const Signin = ({ handleToken }) => {
+const Signin = ({ handleTokenAndId }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { id } = location.state;
+  // console.log(location);
+  // const { id } = location.state;
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,7 +18,7 @@ const Signin = ({ handleToken }) => {
     event.preventDefault();
     try {
       const response = await axios.post(
-        "https://lereacteur-vinted-api.herokuapp.com/user/login",
+        "https://site--backend-vinted--wbbmf4gr4bwy.code.run/user/login",
         {
           email: email,
           password: password,
@@ -26,9 +27,9 @@ const Signin = ({ handleToken }) => {
       console.log(response.data);
       if (response.data.token) {
         // Cookies.set("token-vinted", response.data.token, {expires:14})
-        handleToken(response.data.token);
-        if (id) {
-          navigate(`/offer/${id}`);
+        handleTokenAndId(response.data.token);
+        if (location.state.id) {
+          navigate(`/offer/${location.state.id}`);
         } else {
           navigate("/");
         }

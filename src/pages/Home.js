@@ -1,8 +1,6 @@
 import "../assets/css/home.scss";
 import OfferCard from "../components/OfferCard";
 import heroImage from "../images/officiel-hero-image.jpg";
-
-// import offers from "../offers.json";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -19,13 +17,11 @@ const Home = ({
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
-  console.log(search.length);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://lereacteur-vinted-api.herokuapp.com/offers?sort=${sortAscPrice}${sortDescPrice}&title=${search}&priceMin=${priceMin}&priceMax=${priceMax}`
+          `https://site--backend-vinted--wbbmf4gr4bwy.code.run/offers?sort=${sortAscPrice}${sortDescPrice}&title=${search}&priceMin=${priceMin}&priceMax=${priceMax}`
         );
         setData(response.data);
         setIsLoading(false);
@@ -65,7 +61,7 @@ const Home = ({
         </section>
 
         <section className="homepage-offers">
-          {data.offers.map((elem, index) => {
+          {data.offers.map((elem) => {
             return (
               <OfferCard offerInfos={elem} key={elem._id} offerId={elem._id} />
             );

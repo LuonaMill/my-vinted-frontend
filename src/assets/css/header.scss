@@ -4,7 +4,7 @@
 }
 
 header {
-  max-height: 90px;
+  max-height: 100px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -64,6 +64,7 @@ header {
 header .blue-button {
   background-color: var(--blue-vinted);
   color: white;
+  margin: 15px 0 15px 0;
 }
 
 header .red-button {

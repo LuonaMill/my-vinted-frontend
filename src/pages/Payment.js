@@ -7,7 +7,7 @@ import CheckoutForm from "../components/CheckoutForm";
 const Payment = () => {
   //  Je me connecte au compte stripe du Reacteur en front en fournissant sa clef publique
   const stripePromise = loadStripe(
-    "pk_test_51HCObyDVswqktOkX6VVcoA7V2sjOJCUB4FBt3EOiAdSz5vWudpWxwcSY8z2feWXBq6lwMgAb5IVZZ1p84ntLq03H00LDVc2RwP"
+    "pk_test_51MbOMcBYTQKPCQuG2QTDXNquLlbZlSf1KtFoCNpdANNAjL5RP4kWQPPeb06hhz1PEfgkJ2y1AYdnbQgudGhV02XV00tlgngW9z"
   );
 
   //  Je me connecte à mon compte stripe
@@ -28,7 +28,7 @@ const Payment = () => {
 
           <div className="fees">
             <p>Commande</p>
-            <p>{price.toFixed(2)} €</p>
+            <p>{price} €</p>
           </div>
           <div className="fees">
             <p>Frais de protection acheteur</p>
@@ -59,7 +59,11 @@ const Payment = () => {
             </article>
           </div>
           <Elements stripe={stripePromise}>
-            <CheckoutForm name={ownerid} title={title} amount={price} />
+            <CheckoutForm
+              name={ownerid}
+              product_name={title}
+              order_price={total}
+            />
           </Elements>
 
           {id}
